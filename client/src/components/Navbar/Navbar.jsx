@@ -1,33 +1,45 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import logo from '../../assests/logo.png'
-import search from '../../assests/search-icon.png'
-import Avatar from '../../components/Avatar/Avatar'
-import './Navbar.css'
-const Navbar = () => {
-    var user=null
+import React,{useContext} from 'react'
+import { Link } from 'react-router-dom';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
+import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
+import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import './navbar.scss'
+import { DarkModeContext } from '../../context/darkModeContext';
+import { AuthContext } from '../../context/authContext';
+function Navbar() {
+  const { toggle,darkMode } = useContext(DarkModeContext)
+  const { currentUser } = useContext(AuthContext)
   return (
-    <nav className='main-nav'>
-      <div className='navbar'>
-    <Link to='/'className='nav-item nav-logo'>
-        <img src={logo} alt='logo'/>
-    </Link> 
-    <Link to='/'className='nav-item nav-btn'>About</Link>
-    <Link to='/'className='nav-item nav-btn'>Products</Link>
-    <Link to='/'className='nav-item nav-btn'>For teams</Link>
-    <form>
-        <input type="text"placeholder='search...'/>
-        <img src={search} alt="search" width="18" className='searchlogo'/>
-    </form>
-    {user ===null?
-     <Link to='/Auth'className='nav-item nav-links'>Log in</Link> :
-     <>
-      <Avatar backgroundColor='#009dff' px="10px" py="7px" borderRadius="50%" color='white'><Link to='/'style={{color:"white",textDecoration:"none"}}>M</Link></Avatar>
-      <button className='nav-item nav-links'>Log out</button>
-     </>
-}
-      </div>
-    </nav>
+    <div className='navbar'>
+        <div className='left'>
+          <Link to='/' style={{textDecoration:'none'}}>
+          <span>Social</span>
+          </Link>
+          <HomeOutlinedIcon/>
+          {darkMode? <DarkModeOutlinedIcon onClick={toggle}/>:<WbSunnyOutlinedIcon onClick={toggle}/>}
+          <GridViewOutlinedIcon/>
+          <div className='search'>
+            <SearchOutlinedIcon/>
+            <input type='text' placeholder='Search....'/>
+          </div>
+        </div>
+        <div className='right'>
+          <PersonOutlineOutlinedIcon/>
+          <EmailOutlinedIcon/>
+          <NotificationsActiveOutlinedIcon/>
+          <div className='user'>
+            <img src={currentUser.profilePic} />
+            <span>{currentUser.name}</span>
+
+          </div>
+
+        </div>
+    </div>
   )
 }
 

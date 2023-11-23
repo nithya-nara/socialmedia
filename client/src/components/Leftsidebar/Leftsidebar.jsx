@@ -1,37 +1,48 @@
-import React from 'react'
-import './Leftsidebar.css'
-import { NavLink } from 'react-router-dom'
-import Globe from '../../assests/Globe.svg'
-const Leftsidebar = ({ slideIn, handleSlideIn }) => {
-    const slideInStyle = {
-        transform: "translateX(0%)",
-      }
-      const slideOutStyle = {
-        transform: "translateX(-100%)",
-      }
+import React, { useContext } from 'react'
+import Friends from "../../assets/1.png"
+import Groups from "../../assets/2.png"
+import Market from "../../assets/3.png"
+import Watch from "../../assets/4.png"
+import Memories from "../../assets/5.png"
+import './leftBar.scss'
+import { AuthContext } from '../../context/authContext'
+
+function LeftBar() {
+  const { currentUser } = useContext(AuthContext)
   return (
-    <div className='left-sidebar' style={slideIn ? slideInStyle :slideOutStyle}>
-    <nav className='side-nav'>
-      <NavLink to='/' className='side-nav-links' activeclassname='active' onClick={()=>handleSlideIn()}>
-        <p>Home</p>
-     </NavLink>
-     <div className='side-nav-div'>
-        <div><p>PUBLIC</p></div>
-        <NavLink to='/Questions' onClick={()=>handleSlideIn()} className='side-nav-links' activeclassname='active'> 
-          <img src={Globe} alt="Globe" />
-          <p style={{paddingLeft: "10px"}}> Questions </p>
-        </NavLink>
-        <NavLink to='/Tags' onClick={()=>handleSlideIn()} className='side-nav-links' activeclassname='active' style={{paddingLeft: "40px"}}> 
-          <p>Tags</p>
-        </NavLink>
-        <NavLink  to='/Users' onClick={()=>handleSlideIn()} className='side-nav-links' activeclassname='active' style={{paddingLeft: "40px"}}>
-        <p>Users</p>
-        </NavLink>
+    <div className='leftBar'>
+        <div className='container'>
+          < div className='menu'>
+            <div className='user'>
+            <img src={currentUser.profilePic}/>
+            <span>{currentUser.name}</span>
+            </div>
+            <div className='item'>
+              <img src={Friends} alt=''/>
+              <span>Friends</span>
+            </div>
+            <div className='item'>
+              <img src={Groups} alt=''/>
+              <span>Groups</span>
+            </div>
+            <div className='item'>
+              <img src={Market} alt=''/>
+              <span>Market</span>
+            </div>
+            <div className='item'>
+              <img src={Watch} alt=''/>
+              <span>Watch</span>
+            </div>
+            <div className='item'>
+              <img src={Memories} alt=''/>
+              <span>Memories</span>
+            </div>
+            <hr/>
+            
+          </div>
         </div>
-    </nav>
-      
     </div>
   )
 }
 
-export default Leftsidebar
+export default LeftBar

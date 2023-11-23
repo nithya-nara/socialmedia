@@ -1,42 +1,61 @@
-.left-sidebar {
-    width: 164px;
-    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-    background-color: white;
-    height: auto;
-    min-height: 100vh;
-    transition: box-shadow ease-in-out 0.1s, transform ease-in-out 0.1s;
-    box-sizing: border-box;
-    font-size: 13px;
-  }
-.side-nav{
-    height: auto;
-    max-width: 100%;
-    position: sticky;
-    margin: 50px 0px;
-    padding: 20px 0px;
-  }
-.side-nav-div{
-    padding: 10px 0px;
+@import "../../style.scss";
 
-}
-.side-nav-div div{
-    padding-left: 10px;
-}
-.side-nav-links {
-    text-decoration: none;
-    color: #3a3a3a;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 10px;
-    transition: 0.2s;
-  }
-.side-nav-links:hover{
-    color: black;
-}
-.active {
-    font-weight: bolder;
-    color: black;
-    background-color: rgb(225, 225, 225);
-    border-right: solid 3px #ef8236;
+.leftBar {
+  @include themify($themes) {
+    flex: 2;
+    position: sticky;
+    top: 70px;
+    height: calc(100vh - 70px);
+    overflow: scroll;
+    background-color: themed('bg');
+    color: themed('textColor');
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .container {
+      padding: 20px;
+      hr {
+        margin: 20px 0px;
+        border: none;
+        height: 0.5px;
+        background-color: themed('border');
+      }
+      .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        span {
+          font-size: 12px;
+        }
+
+        .user {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          span {
+            font-size: 14px;
+          }
+        }
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          img {
+            width: 30px;
+            height: 30px;
+          }
+          span {
+            font-size: 14px;
+          }
+        }
+      }
+    }
   }

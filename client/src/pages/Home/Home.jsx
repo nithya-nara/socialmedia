@@ -1,16 +1,11 @@
 import React from 'react'
-import '../../App.css'
-import Leftsidebar from '../../components/Leftsidebar/Leftsidebar'
-import Rightsidebar from '../../components/Rightsidebar/Rightsidebar'
-import Homemainbar from '../../components/Homemainbar/Homemainbar'
-const Home = () => {
+import './home.css'
+import Posts from '../../components/posts/posts'
+
+function Home() {
   return (
-    <div className='home-container-1'>
-      <Leftsidebar/>
-      <div className='home-container-2'>
-        <Homemainbar />
-        <Rightsidebar/>
-      </div>
+    <div className='home'>
+     <Posts/>
     </div>
   )
 }
